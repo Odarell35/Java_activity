@@ -5,16 +5,23 @@ public class unitconverter {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Enter the unit you want to convert from (feet, pounds, fahrenheit): ");
-        String initialunit = scanner.nextLine().toLowerCase();
+        System.out.println("Enter the unit you want to convert from:");
+        System.out.println("A - feet");
+        System.out.println("B - pounds");
+        System.out.println("C - fahrenheit");
 
-        System.out.println("Enter the unit you want to convert to (meters, kgs, celsius): ");
-        String finalunit = scanner.nextLine().toLowerCase();
+        String initialunit = scanner.nextLine().toUpperCase();
+
+        System.out.println("Enter the unit you want to convert to: ");
+        System.out.println("A - Meter");
+        System.out.println("B -   Kilograms");
+        System.out.println("C - To Celsius");
+        String finalunit = scanner.nextLine().toUpperCase();
 
         System.out.println("Enter the quantity to be converted: ");
         double quantity = scanner.nextDouble();
 
-        double result = convert(initialunit, finalunit, quantity);
+        double result = conversion(initialunit, finalunit, quantity);
 
         if (result != -1) {
             System.out.printf("Converted value: %.2f %s%n", result, initialunit);
@@ -25,25 +32,25 @@ public class unitconverter {
         scanner.close();
     }
 
-    public static double convert(String initialunit, String finalunit, double quantity) {
+    public static double conversion(String initialunit, String finalunit, double quantity) {
         switch (initialunit) {
-            case "feet":
+            case "A":
                 if (finalunit.equals("meters")) {
                     return feetToMeters(quantity);
                 }
                 break;
-            case "pounds":
+            case "B":
                 if (finalunit.equals("kgs")) {
                     return poundsToKgs(quantity);
                 }
                 break;
-            case "fahrenheit":
-                if (finalunit.equals("celsius")) {
+            case "C":
+                if (finalunit.equals("C")) {
                     return fahrenheitToCelsius(quantity);
                 }
                 break;
         }
-        return -1; // Invalid conversion
+        return -1; 
     }
 
     public static double feetToMeters(double feet) {
